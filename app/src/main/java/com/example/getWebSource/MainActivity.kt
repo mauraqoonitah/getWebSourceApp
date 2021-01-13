@@ -7,6 +7,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.getWebSource.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,6 +32,9 @@ class MainActivity : AppCompatActivity() {
         binding.doneButton.setOnClickListener {
             addUrlname(it)
         }
+
+        // Instantiate the RequestQueue.
+        val queue = Volley.newRequestQueue(this)
 
         // access the items of the list
         val choose = resources.getStringArray(R.array.Choose)
@@ -81,6 +88,23 @@ class MainActivity : AppCompatActivity() {
 
             val textChoosen = spinner.selectedItem.toString()
             url_text.text = textChoosen + urlInput
+
+            val queue = Volley.newRequestQueue(this@MainActivity)
+
+            val outputText = textChoosen + urlInput
+            // Request a string response from the provided URL.
+            val stringRequest = StringRequest(
+                Request.Method.GET, outputText,
+                Response.Listener<String> { response ->
+                    // Display the first 1000 characters of the response string.
+                    output_text.text = "${response.substring(0, 1000)}"
+                },
+                Response.ErrorListener { output_text.text = "Enter valid url!" })
+
+            // Add the request to the RequestQueue.
+            queue.add(stringRequest)
+
+
 
     }
         // Hide the keyboard.
