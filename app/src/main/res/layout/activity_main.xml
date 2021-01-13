@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+    <variable
+        name="words"
+        type="com.example.getWebSource.Words" />
+    </data>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/layout_margin"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/name_text"
+        style="@style/NameStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter URL:"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="https://"
+            android:textColor="@color/colorBlack"
+            android:layout_gravity="center_vertical"
+            android:textSize="16sp">
+        </TextView>
+
+    <EditText
+        android:id="@+id/url_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_gravity="center_horizontal"
+        android:textSize="16sp"
+        android:inputType="textPersonName"
+        android:hint="www.example.com"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/colorBlack"
+       />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/done_button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/layout_margin"
+        android:fontFamily="@font/roboto"
+        android:textStyle="bold"
+        android:onClick="clickHandlerFunction"
+        android:text="Get Web Source" />
+
+    <TextView
+        android:id="@+id/url_text"
+        style="@style/NameStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorAccent"
+        android:paddingBottom="@dimen/small_padding"
+        android:text="@={words.urlInput}"
+        />
+
+
+</LinearLayout>
+
+</layout>
