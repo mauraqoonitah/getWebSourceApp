@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
+import android.widget.*
 import androidx.databinding.DataBindingUtil
 import com.example.getWebSource.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,8 +32,38 @@ class MainActivity : AppCompatActivity() {
             addUrlname(it)
         }
 
+        // access the items of the list
+        val choose = resources.getStringArray(R.array.Choose)
+        // access the spinner
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        if (spinner != null) {
+            val adapter = ArrayAdapter(
+                this, android.R.layout.simple_spinner_item, choose
+            )
+            spinner.adapter = adapter
 
-    }
+            spinner.onItemSelectedListener = object :  AdapterView.OnItemClickListener,
+                AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                    Toast.makeText(this@MainActivity,
+                        getString(R.string.selected_item) + " " +
+                                "" + choose[position], Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    Toast.makeText(this@MainActivity,
+                         "nothing selected"
+                               , Toast.LENGTH_SHORT).show()                }
+
+                override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                }
+
+
+            }
+
+        }
+
+        }
 
     private fun addUrlname(view: View) {
 //        val editText = findViewById<EditText>(R.id.nickname_edit)
@@ -44,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 //        nicknameTextView.text = editText.text
         // convert the Editable to a String
 //        binding.nicknameText.text = binding.nicknameEdit.text.toString()
-        myName?.urlInput = url_edit.text.toString()
+        myName.urlInput = url_edit.text.toString()
 
 //        editText.visibility = View.GONE
         url_edit.visibility = View.GONE
