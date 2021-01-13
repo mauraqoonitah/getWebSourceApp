@@ -96,8 +96,7 @@ class MainActivity : AppCompatActivity() {
             val stringRequest = StringRequest(
                 Request.Method.GET, outputText,
                 Response.Listener<String> { response ->
-                    // Display the first 1000 characters of the response string.
-                    output_text.text = "${response.substring(0, 1000)}"
+                    output_text.text = "${response.substring(0)}"
                 },
                 Response.ErrorListener { output_text.text = "Enter valid url!" })
 
