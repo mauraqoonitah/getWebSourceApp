@@ -1,6 +1,7 @@
 # getWebSourceApp
 This application asked the user to input site URL into the EditText, user then entry the URL and app
-will return the site HTML source when user pressed the Get Page Source Button.
+will return the site HTML source when user pressed the Get Page Source Button. Just enter web address and view the source code of that page.
+
 
 _Tools: Android Studio_
 
